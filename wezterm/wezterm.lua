@@ -3,7 +3,7 @@ local config = {}
 
 -- Font configuration
 config.font = wezterm.font('Hack Nerd Font', { weight = 'Bold' })
-config.color_scheme = 'Dracula+'
+config.color_scheme = 'catppuccin-mocha'
 
 config.native_macos_fullscreen_mode = true -- to avoid maximizing over the desktop (annoying)
 config.scrollback_lines = 10000
