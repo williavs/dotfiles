@@ -1,8 +1,12 @@
 local wezterm = require 'wezterm'
 local config = {}
+local bg_manager = require('backgrounds.manager')
+
+-- Automatically reload config when files change
+config.automatically_reload_config = true
 
 -- Font configuration
-config.font = wezterm.font('Hack Nerd Font', { weight = 'Bold' })
+config.font = wezterm.font('Droid Sans Mono Slashed for Powerline', { weight = 'Bold' })
 config.color_scheme = 'catppuccin-mocha'
 
 config.native_macos_fullscreen_mode = true -- to avoid maximizing over the desktop (annoying)
@@ -22,10 +26,15 @@ config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 500
 
 -- Background configuration (preserves aspect ratio, no stretching)
+-- Load dynamic background from Unsplash collection
+-- The manager ensures the current image is downloaded at startup
+bg_manager.get_current_image()
+
+-- Always point to the static cached file path
 config.background = {
   {
     source = {
-      File = wezterm.home_dir .. '/background.jpeg',
+      File = wezterm.home_dir .. '/.config/wezterm/backgrounds/cache/current.jpg',
     },
     hsb = {
       brightness = 0.03,
